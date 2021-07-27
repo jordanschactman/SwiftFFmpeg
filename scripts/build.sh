@@ -154,17 +154,27 @@ EOF
   <array>
     <dict>
       <key>LibraryIdentifier</key>
-      <string>$LIB_NAME</string>
+      <string>macos-x86_64</string>
       <key>LibraryPath</key>
       <string>$LIB_NAME.framework</string>
       <key>SupportedArchitectures</key>
       <array>
         <string>x86_64</string>
-        <string>arm64</string>
       </array>
       <key>SupportedPlatform</key>
       <string>macos</string>
     </dict>
+    <dict>
+      <key>LibraryIdentifier</key>
+      <string>macos-arm64</string>
+      <key>LibraryPath</key>
+      <string>$LIB_NAME.framework</string>
+      <key>SupportedArchitectures</key>
+      <array>
+        <string>arm64</string>
+      </array>
+      <key>SupportedPlatform</key>
+      <string>macos</string>
   </array>
   <key>CFBundlePackageType</key>
   <string>XFWK</string>
@@ -188,7 +198,7 @@ else
   <array>
     <dict>
       <key>LibraryIdentifier</key>
-      <string>$LIB_NAME</string>
+      <string>macos-x86_64</string>
       <key>LibraryPath</key>
       <string>$LIB_NAME.framework</string>
       <key>SupportedArchitectures</key>
