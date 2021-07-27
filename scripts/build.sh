@@ -86,24 +86,30 @@ function build_framework() {
   local LIB_NAME=$1
 
   local LIB_XCFRAMEWORK=xcframework/$LIB_NAME.xcframework
-  local LIB_FRAMEWORKS=()
-
-  for prefix in ${PREFIXES[@]}; do
-    LIB_FRAMEWORKS+=($prefix/framework/$LIB_NAME.framework)
-  done
+  local LIB_FRAMEWORK=framework/$LIB_NAME.framework
 
   # build framework
 
-  for i in ${!LIB_FRAMEWORKS[@]}; do
+  rm -rf $LIB_FRAMEWORK
 
-    rm -rf ${LIB_FRAMEWORKS[$i]}
+  mkdir -p $LIB_FRAMEWORK/Headers
+  cp -R ${PREFIXES[0]}/include/$LIB_NAME/ $LIB_FRAMEWORK/Headers
 
-    mkdir -p ${LIB_FRAMEWORKS[$i]}/Headers
-    cp -R ${PREFIXES[$i]}/include/$LIB_NAME/ ${LIB_FRAMEWORKS[$i]}/Headers
+  if [ ${#PREFIXES[@]} -gt 1 ]; then
 
-    cp ${PREFIXES[$i]}/lib/$LIB_NAME.a ${LIB_FRAMEWORKS[$i]}/$LIB_NAME
+    local LIBS=()
 
-    cat > ${LIB_FRAMEWORKS[$i]}/Info.plist << EOF
+    for prefix in ${PREFIXES[@]}; do
+      LIBS+=("$prefix/lib/$LIB_NAME.a")
+    done
+
+    lipo -create "${LIBS[@]}" -output $LIB_FRAMEWORK/$LIB_NAME
+
+  else
+    cp ${PREFIXES[0]}/lib/$LIB_NAME.a $LIB_FRAMEWORK/$LIB_NAME
+  fi
+
+  cat > $LIB_FRAMEWORK/Info.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -132,18 +138,14 @@ function build_framework() {
 </plist>
 EOF
 
-  done
-
   # build xcframework
 
   rm -rf $LIB_XCFRAMEWORK
 
   if [[ "$HOST_ARCH" == "arm64" ]]; then
-  
-    mkdir -p $LIB_XCFRAMEWORK/macos-x86_64
-    mkdir -p $LIB_XCFRAMEWORK/macos-arm64
-    cp -R ${LIB_FRAMEWORKS[0]} $LIB_XCFRAMEWORK/macos-x86_64
-    cp -R ${LIB_FRAMEWORKS[1]} $LIB_XCFRAMEWORK/macos-arm64
+
+    mkdir -p $LIB_XCFRAMEWORK/macos-universal
+    cp -R $LIB_FRAMEWORK $LIB_XCFRAMEWORK/macos-universal
 
     cat > $LIB_XCFRAMEWORK/Info.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -154,23 +156,12 @@ EOF
   <array>
     <dict>
       <key>LibraryIdentifier</key>
-      <string>macos-x86_64</string>
+      <string>macos-universal</string>
       <key>LibraryPath</key>
       <string>$LIB_NAME.framework</string>
       <key>SupportedArchitectures</key>
       <array>
         <string>x86_64</string>
-      </array>
-      <key>SupportedPlatform</key>
-      <string>macos</string>
-    </dict>
-    <dict>
-      <key>LibraryIdentifier</key>
-      <string>macos-arm64</string>
-      <key>LibraryPath</key>
-      <string>$LIB_NAME.framework</string>
-      <key>SupportedArchitectures</key>
-      <array>
         <string>arm64</string>
       </array>
       <key>SupportedPlatform</key>
@@ -188,7 +179,7 @@ EOF
 else
 
   mkdir -p $LIB_XCFRAMEWORK/macos-x86_64
-  cp -R ${LIB_FRAMEWORKS[0]} $LIB_XCFRAMEWORK/macos-x86_64
+  cp -R $LIB_FRAMEWORK $LIB_XCFRAMEWORK/macos-x86_64
 
   cat > $LIB_XCFRAMEWORK/Info.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
