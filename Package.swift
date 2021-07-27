@@ -69,6 +69,11 @@ let package = Package(
       checksum: "86f6955e75ab655bfadbd93d300ef2a89ed7eb1bb8046e97a47362541be21930"
     ),
     .binaryTarget(
+      name: "libpostproc",
+      url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libpostproc.zip?raw=true",
+      checksum: "442e0111dc4fb00e62a807a668f333a5e07005774ffaaec44bba8498ff18f224"
+    ),
+    .binaryTarget(
       name: "libswresample",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libswresample.zip?raw=true",
       checksum: "ba6c49405ae6eee46c4a1222b3fa34b5acbcc06cabb63146ba42960182f566a3"
