@@ -46,37 +46,37 @@ let package = Package(
     .binaryTarget(
       name: "libavcodec",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libavcodec.zip?raw=true",
-      checksum: "3e2a15df0d0e2678006729d495a4580289cf28f482f60ca7fcb0ec226ed1d0e1"
+      checksum: "c15b0738c4ab1282a83fea88b7b2170b0fb95fb74db31a9e06c5c734150c316c"
     ),
     .binaryTarget(
       name: "libavdevice",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libavdevice.zip?raw=true",
-      checksum: "99f04e5988b37e086b6afbec8a7e0dd8ac894d129e9349320527b755d79cc167"
+      checksum: "dd177148b681fa767c6b24c8843024dfd706d4bac00c9dcc15e03a958c47ce7a"
     ),
     .binaryTarget(
       name: "libavfilter",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libavfilter.zip?raw=true",
-      checksum: "733360ffbc9905f51585550ff7e24fbb03d76ebf6801fd2752f81c69e36562ce"
+      checksum: "f5ecf8799b2ccaca485413d7f447e2fb3c040dd22f7c17256bb9e2b100e68046"
     ),
     .binaryTarget(
       name: "libavformat",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libavformat.zip?raw=true",
-      checksum: "f5483cd50f27387b6a3be951e2c66d740141b27faa91cf2f15ddbcf6efe8f9d0"
+      checksum: "71c4f2f670e1e4765a90d944989b4f1dcb531be2a0b681c4691bfdee6383f8f1"
     ),
     .binaryTarget(
       name: "libavutil",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libavutil.zip?raw=true",
-      checksum: "c2ad5fbbf92a03c6a18163ec4cd84698afe58b4b8e756a4a4df9d8985acba43d"
+      checksum: "86f6955e75ab655bfadbd93d300ef2a89ed7eb1bb8046e97a47362541be21930"
     ),
     .binaryTarget(
       name: "libswresample",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libswresample.zip?raw=true",
-      checksum: "878dffe1461327699d28ec4752c3a6aca808190b7e56f0e6f83a910cfd0cf2a7"
+      checksum: "ba6c49405ae6eee46c4a1222b3fa34b5acbcc06cabb63146ba42960182f566a3"
     ),
     .binaryTarget(
       name: "libswscale",
       url: "https://github.com/jordanschactman/SwiftFFmpeg/blob/master/xcframework/libswscale.zip?raw=true",
-      checksum: "f450d90215e66b629a0927b00bf0283c002981f2c0f534b9f23196634fb2334a"
+      checksum: "812eb3e354798e132fc3a3a2c1aa540cd7aa3150aec143ae9c063ab55718623e"
     ),
     .target(
       name: "SwiftFFmpegExamples",

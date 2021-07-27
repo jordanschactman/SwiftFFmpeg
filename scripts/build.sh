@@ -175,6 +175,7 @@ EOF
       </array>
       <key>SupportedPlatform</key>
       <string>macos</string>
+    </dict>
   </array>
   <key>CFBundlePackageType</key>
   <string>XFWK</string>
