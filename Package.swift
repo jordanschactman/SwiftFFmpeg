@@ -25,6 +25,7 @@ let package = Package(
         "libavfilter",
         "libavformat",
         "libavutil",
+        "libpostproc",
         "libswresample",
         "libswscale",
       ],
